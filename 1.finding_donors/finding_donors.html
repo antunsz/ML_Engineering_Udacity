@@ -13083,36 +13083,36 @@ It is a ratio of true positives(words classified as spam, and which are actually
 <p><strong>Answer: </strong>
 &lt;/br&gt;
 <b>1. Support Vector Machines (SVM)</b>
-A real world application of SVMs can be in the field of face detection (Computer Vision). As we know SVMs are good with Non-linear data classification (kernel tricks), I think image classification (which is infact an example of non-linear data) will be a good place to use SVMs.
+A real world application of SVMs can be applyied on the field of Computer Vision. As we know SVMs are good with Non-linear data classification and image classification (kind of non-linear data) will be a good place to use SVMs.
 &lt;/br&gt;
 <b>Strengths of the model:</b></p>
 <ul>
+<li>Can model Non-linear data easily.</li>
+<li>Does not get much affected by outliers.</li>
 <li>Largest margin of separation.</li>
 <li>Effectively deals with high dimensional space.</li>
-<li>Does not get much affected by outliers.</li>
-<li>Can model Non-linear data easily.</li>
 </ul>
 <b>Weaknesses of the model:</b>
 <ul>
-<li>Training time increases rapidly with increase in training examples.</li>
-<li>Does not perform well enough when the target classes are overlapping. In other words there is no space for the large margin classifier to fit the decsion boundary.</li>
+<li>Training time increases with increase in training examples.</li>
+<li>Does not perform enough when the target classes are overlapping.</li>
 <li>Works well only when number of examples are greater than number of features.</li>
 </ul>
 <b>Why this model for the selected Problem:</b>
 <ul>
-<li>The data is inherently non-linear. Real world data rarely tends to be linear.</li>
+<li>Real world data rarely tends to be linear.</li>
 <li>The amount of exapmles present for training [in the order of 10K] are much more than number of features [103].</li>
-<li>The visualizations drawn above suggests wide variations in values, this can mean there is a high possibility of presence of outliers which can affect the performance of the models in general. **Thus choosing a model like SVM which has little to no affect due to outliers seems to be a good choice.**</li>
+<li>The high possibility of presence of outliers which can affect the performance of the models in general.</li>
 </ul>
 </br>
 </br>
 <b>2. Stochastic Gradient Descent Classifier (SGDC)</b>
-A real world application of SGD can be in the Google Assistant. As we know Google Assistant learn from constantly looking at user's input and getting better at its recommendations and responses in general. I think there is a chance that it is constantly upgrading its weights based on the inputs of the user and her satisfaction level with the results.
+A real world application of SGD can be in the Google Assistant. Google Assistant learn from constantly looking at user's input and getting better at its recommendations and responses in general. I think there is a chance that it is constantly upgrading its weights based on the inputs of the user and her satisfaction level with the results.
 Strengths of the model: 
 <ul>
-<li>Uses a single example or a mini-btach of examples to update weights. - Decrease in convergence time</li>
-<li>Use of less number of examples reduces variance in the parameter update. This means we will get a more stable convergence.</li>
-<li>Use of fewer examples means more optimized matrix operations in calculation of the gradient - Decrease in convergence time.</li>
+<li>Uses a single example or a mini-btach of examples to update weights.</li>
+<li>Use of less number of examples reduces variance in the parameter update.</li>
+<li>Use of fewer examples means more optimized matrix operations in calculation of the gradient </li>
 </ul>
 <b>Weaknesses of the model:</b>
 <ul>
@@ -13123,8 +13123,8 @@ Strengths of the model:
 <b>Why this model for the selected Problem:</b>
 <ul>
 <li>The data is pretty large and the efficient vectorized methods can give a boost to training time</li>
-<li>Model will get better as it sees more examples. This means parameter updation can be done at the same time when we are predicting (for those other ~15 million people).</li>
-<li>The update process being noisy can allow the model to avoid local minima.**</li>
+<li>Model will get better as it sees more examples.</li>
+<li>The update process being noisy can allow the model to avoid local minima.</li>
 src: [Stochastic Gradient Descent](http://ufldl.stanford.edu/tutorial/supervised/OptimizationStochasticGradientDescent/)
 </ul>
 </br>
@@ -14109,20 +14109,20 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>
+<p><strong>Answer: </strong><br>
 <b>F score on test set</b></p>
 <ul>
-<li>From the graph of F-score on test set (Right lower corner) it is clear that in all three cases (1%, 10% and 100%) dataset Gradient Boosting out performs Support Vector Machine and Stochastic Gradient Descent. This means it has a better True positives and True Negatives results and tends to make less False Positives and False Negatives
+<li>From the graph of F-score on test set (Right lower corner) it is clear that in all three cases (1%, 10% and 100%) dataset Gradient Boosting out performs Support Vector Machine and Stochastic Gradient Descent. Has a better True positives and True Negatives results and tends to make less False Positives and False Negatives
 </li>
 </ul>
 <b>Prediction/Training Time</b>
 <ul>
-<li>Compared to SVM, Gradient Boosting had an upper hand and completed the training in around 11 to 15 seconds mark (which is 1/10th of the time SVM took). Also while prediction time of Gradient Boosting was about in miliseconds, SVM, on the other hand performed it on the order of 100 seconds. Considering the data we need to classify in the end is over in Millions, SVM cannot be considered as a viable choice. Coming over to SGD, though it took few miliseconds to train SGD compared to 11 to 15 seconds in Gradient Bossting. But what we mostly care about is prediction time, and we can clearly see both SGD and GBC give a simmilar prediction time. (So in case of GBC, we get better predictions in same amount of prediction time).
+<li>Gradient Boosting, vcompared to SVM, had an upper hand and completed the training in around 11 to 15 seconds mark. Also while prediction time of Gradient Boosting was about in miliseconds, SVM, on the other hand performed it on the order of 100 seconds. Considering the data we need to classify in the end is over in Millions, SVM cannot be considered as a viable choice. Coming over to SGD, though it took few miliseconds to train SGD compared to 11 to 15 seconds in Gradient Bossting. But what we mostly care about is prediction time, and we can clearly see both SGD and GBC give a simmilar prediction time. 
 </li>
 </ul>
 <b>Algorithm's Suitability for the data</b>
 <ul>
-<li>Gradient Boosting as discussed above performs very well and very fast predictions. We need to remember that the final product will deal with ~15 Million data points. This means we need to make sure our system is scalable. In case of SVM, we know it will not be able to scale with a prediction time of over 100 seconds for just around 9K samples. With SGD, we realize that although it is doing comparatively well from SVM, it have far less F-Score than GBC.
+<li>Gradient Boosting as discussed above performs very well and very fast predictions. We have millions of datapoints and we need to make sure our system is scalable. In case of SVM, it will not be able to scale with a prediction time of over 100 seconds for just around 9K samples. With SGD, we realize that although it is doing comparatively well from SVM, it have far less F-Score than GBC.
 </li>
 </ul>
 </div>
@@ -14147,8 +14147,8 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> &lt;/br&gt;
-<b>Gradient Boosting</b> is a simple process of going down a hill of error. It uses multiple hands to help you get down this hill of error. Before going ahead we should understand that the error is the difference in the value we knew to be true and the value which the algorithm predicted to be true (Example If an algorithm says there is 70% chance of a person having income &gt;50k and in reality the person was in the region of &lt;=50K then we had a 70% error or 0.7 error). Now, since that is clear let us get back to our analogy of the hands. Each hand predicts the next point we should go to, to go down the hill of error (to a poisition of minimum error) and the next hand carries on from the point where the last hand left. So, its like a combined effort to get better results as compared to other algorithms. This thing is repeated over and over again to reach a point of minimum error or the best point for prediction.</p>
+<p><strong>Answer: </strong> <br>
+<b>Gradient Boosting</b> is a simple process of going down a hill of error. It uses multiple hands to help you get down this hill of error. Before going ahead we should understand that the error is the difference in the value we knew to be true and the value which the algorithm predicted to be true . Now, since that is clear let us get back to our analogy of the hands. Each hand predicts the next point we should go to, to go down the hill of error and the next hand carries on from the point where the last hand left. So, its like a combined effort to get better results as compared to other algorithms. This thing is repeated over and over again to reach a point of minimum error or the best point for prediction.</p>
 
 </div>
 </div>
@@ -14322,7 +14322,7 @@ Both F-score and accuracy of the optimized model bumped slightly. Showing that a
 </tr>
 </tbody>
 </table>
-<p>This clearly shows that the optimized model is driving out the underlying pattern in the data to really make intelligent predictions.</p>
+<p>The table shows that the optimized model is driving out the underlying pattern in the data to really make intelligent predictions.</p>
 
 </div>
 </div>
